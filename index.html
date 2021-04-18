@@ -1,70 +1,115 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="utf-8">
-		<title>Webminer</title>
-	</head>
-
-	<body>
-
-		<div>
-			<label>Threads:</label>
-			<input id="threads" type="number" min="1" max="64" value="4" placeholder="Number of threads">
-		</div>
-
-		<div>
-			<label>Your wallet address:</label>
-			<input id="wallet" type="text" placeholder="Your Turtlecoin address" value="TRTLv198neLLCadgT3rzAnepD9aDf4MMC33MDMbkkELJcRAiZyH35fL3qG7xjJDSUCGCRJFWwxyvNDCwxy8kVpbFTsx654w8PEJ">
-		</div>
-
-		<div>
-			<label>Pool:</label>
-			<input id="pool" type="text" placeholder="Your favourite mining pool" value="trtl.pool.mine2gether.com">
-		</div>
-
-		<div>
-			<label>Port:</label>
-			<input id="port" type="number" placeholder="Your pools port" value="2225">
-		</div>
-
-		<div>
-			<label>Mining speed:</label>
-			<input id="speed" type="number" placeholder="Mining speed in percent" min="1" max="100" value="100">
-		</div>
-
-		<div>
-			<label>Worker name:</label>
-			<input id="workerName" type="text" placeholder="Your worker name" value="WebMiner">
-		</div>
-
-
-		<button onclick="updateValues();miner.start()"> Start </button>
-		<button onclick="miner.stop()"> Stop </button>
-
-
-		<script src='turtleminer.js'></script>
-		<script>
-			const config = {
-				pool: "trtl.pool.mine2gether.com",	// pool url
-				port: 2225,	// pool port
-				wallet: "TRTLv198neLLCadgT3rzAnepD9aDf4MMC33MDMbkkELJcRAiZyH35fL3qG7xjJDSUCGCRJFWwxyvNDCwxy8kVpbFTsx654w8PEJ", // your wallet address
-				speed: 100,		// cpu speed/usage in %
-				threads: 4,		// number of threads using for mining
-				workerName: "WebMiner"	// the miner name also knows as 'password' for the pool, default 'x'
-			}
-			const miner = new TurtleMiner(config);
-			console.log(miner.dump());
-
-			miner.on("report", function(rep) {
-				console.log(rep);
-			});
-
-			function updateValues() { // updates values entered by user
-				for (let i in config) {
-					config[i] = document.getElementById(i).value;
-					miner[i] = document.getElementById(i).value;
-				}
-			}
-		</script>
-	</body>
+<html>
+    <body id="body">
+        <style>
+            #logo {
+            text-align: center;
+            width: 100%;
+            }
+            #body {
+            background: rgb(28,151,25);
+            background: -moz-linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
+            background: -webkit-linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
+            background: linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c9719",endColorstr="#0fd38a",GradientType=1);
+            }
+            #img {
+            width: 100px;
+            margin-top: 5px;
+            }
+            input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            }
+            input[type=number],select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            }
+            .button {
+            background-color: white;
+            border: none;
+            color: green;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+            }
+            label{
+            color: white;
+            }
+            #button {
+            text-align: center;
+            }
+            #stop {
+            color: red;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div id="logo">
+            <img src="https://turtlecoin.lol/assets/images/turtlecoin_logo.svg" id="img"></img>
+        </div>
+        <div>
+            <label>Threads:</label>
+            <input id="threads" type="number" min="1" max="64" value="4" placeholder="Number of threads">
+        </div>
+        <div>
+            <label>Your wallet address:</label>
+            <input id="wallet" type="text" placeholder="Your Turtlecoin address" value="TRTLv198neLLCadgT3rzAnepD9aDf4MMC33MDMbkkELJcRAiZyH35fL3qG7xjJDSUCGCRJFWwxyvNDCwxy8kVpbFTsx654w8PEJ">
+        </div>
+        <div>
+            <label>Pool:</label>
+            <input id="pool" type="text" placeholder="Your favourite mining pool" value="trtl.pool.mine2gether.com">
+        </div>
+        <div>
+            <label>Port:</label>
+            <input id="port" type="number" placeholder="Your pools port" value="2225">
+        </div>
+        <div>
+            <label>Mining speed:</label>
+            <input id="speed" type="number" placeholder="Mining speed in percent" min="1" max="100" value="100">
+        </div>
+        <div>
+            <label>Worker name:</label>
+            <input id="workerName" type="text" placeholder="Your worker name" value="WebMiner">
+        </div>
+        <div id="button">
+            <button onclick="updateValues();miner.start()" class="button"> Start </button> 		<button onclick="miner.stop()" class="button" id="stop">Stop</button>
+        </div>
+        <script src='turtleminer.js'></script>
+        <script>
+            const config = {
+            	pool: "trtl.pool.mine2gether.com",	// pool url
+            	port: 2225,	// pool port
+            	wallet: "TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ", // your wallet address
+            	speed: 100,		// cpu speed/usage in %
+            	threads: 4,		// number of threads using for mining
+            	workerName: "WebMiner"	// the miner name also knows as 'password' for the pool, default 'x'
+            }
+            const miner = new TurtleMiner(config);
+            console.log(miner.dump());
+            
+            miner.on("report", function(rep) {
+            	console.log(rep);
+            });
+            
+            function updateValues() { // updates values entered by user
+            	for (let i in config) {
+            		config[i] = document.getElementById(i).value;
+            		miner[i] = document.getElementById(i).value;
+            	}
+            }
+        </script>
 </html>
