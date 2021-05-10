@@ -10,10 +10,12 @@ class TurtleMiner {
         this.workerName = "x";
         this.events = {
             start: function(instance) {
-                console.log(`[WM] Webminer started with ${instance.speed}% speed and ${instance.threads} threads...`)
+                console.log(`[WM] Webminer started with ${instance.speed}% speed and ${instance.threads} threads...`);
+                document.getElementById("btnstart").innerHTML = "Mining.."
             },
             stop: function() {
-                console.log("[WM] Webminer stopped!")
+                console.log("[WM] Webminer stopped!");
+                document.getElementById("btnstart").innerHTML = "Start"
             },
             report: function(report) {
                 console.log("[WM] Webminer report: " + report)

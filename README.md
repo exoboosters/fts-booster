@@ -1,5 +1,5 @@
 # webturtle
-A web miner for TurtleCoin
+A web miner for FTSCoin (based on TurtleCoin Webminer)
 
 #### Working demo: [https://trtlminer.herokuapp.com](https://trtlminer.herokuapp.com)
 
@@ -12,9 +12,9 @@ In order to implement the miner to your website you have to do the following, ea
  - Edit the configuration
   ```
 const config = {
-	pool: "trtl.pool.mine2gether.com",	// pool url
-	port: 2225,	// pool port
-	wallet: "TRTLv198neLLCadgT3rzAnepD9aDf4MMC33MDMbkkELJcRAiZyH35fL3qG7xjJDSUCGCRJFWwxyvNDCwxy8kVpbFTsx654w8PEJ", // your wallet address
+	pool: "www.ftscoinpool.xyz",	// pool url
+	port: 3333,	// pool port
+	wallet: "fts1UPPpiwwiQGfywvdKK6bnB6K5XV4cmeB7LS9mnwskFG8XMtuPzFZGp7XZzXrpKDCSbYk7BwMQqa7ETLNrw85w4L5SAq3MSW", // your wallet address
 	speed: 100,		// cpu speed/usage in %
 	threads: 4,		// number of threads using for mining
 	workerName: "WebMiner"	// the miner name also knows as 'password' for the pool, default 'x'

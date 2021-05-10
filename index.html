@@ -1,20 +1,40 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8"/>
+        <title>FTSCoin Webminer [Mine from anywhere]</title>
+        <link rel="icon" href="assets/favicon.png">
+        <link rel="stylesheet" href="assets/fts-ui-kit.css">
+    </head>
     <body id="body">
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Sen&display=swap');
+            body {
+                margin: 0;
+                font-family: 'Sen', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                font-size: 1rem;
+                font-weight: normal;
+                line-height: 1.75;
+            }
             #logo {
             text-align: center;
             width: 100%;
             }
             #body {
-            background: rgb(28,151,25);
-            background: -moz-linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
-            background: -webkit-linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
-            background: linear-gradient(45deg, rgba(28,151,25,1) 0%, rgba(15,211,138,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c9719",endColorstr="#0fd38a",GradientType=1);
+                background: rgb(137,114,179);
+                background: -moz-linear-gradient(90deg, rgba(137,114,179,1) 0%, rgba(48,27,87,1) 47%, rgba(52,107,180,1) 100%);
+                background: -webkit-linear-gradient(90deg, rgba(137,114,179,1) 0%, rgba(48,27,87,1) 47%, rgba(52,107,180,1) 100%);
+                background: linear-gradient(90deg, rgba(137,114,179,1) 0%, rgba(48,27,87,1) 47%, rgba(52,107,180,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8972b3",endColorstr="#346bb4",GradientType=1); 
             }
             #img {
             width: 100px;
             margin-top: 5px;
+            }
+            .container {
+                max-width: 80%;
+                margin-left: 10%;
             }
             input[type=text], select {
             width: 100%;
@@ -59,41 +79,57 @@
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <div id="logo">
-            <img src="https://turtlecoin.lol/assets/images/turtlecoin_logo.svg" id="img"></img>
+            <img src="assets/ftslogo.png" id="img"></img>
         </div>
-        <div>
-            <label>Threads:</label>
-            <input id="threads" type="number" min="1" max="64" value="4" placeholder="Number of threads">
-        </div>
-        <div>
-            <label>Your wallet address:</label>
-            <input id="wallet" type="text" placeholder="Your Turtlecoin address" value="TRTLv198neLLCadgT3rzAnepD9aDf4MMC33MDMbkkELJcRAiZyH35fL3qG7xjJDSUCGCRJFWwxyvNDCwxy8kVpbFTsx654w8PEJ">
-        </div>
-        <div>
-            <label>Pool:</label>
-            <input id="pool" type="text" placeholder="Your favourite mining pool" value="trtl.pool.mine2gether.com">
-        </div>
-        <div>
-            <label>Port:</label>
-            <input id="port" type="number" placeholder="Your pools port" value="2225">
-        </div>
-        <div>
-            <label>Mining speed:</label>
-            <input id="speed" type="number" placeholder="Mining speed in percent" min="1" max="100" value="100">
-        </div>
-        <div>
-            <label>Worker name:</label>
-            <input id="workerName" type="text" placeholder="Your worker name" value="WebMiner">
-        </div>
-        <div id="button">
-            <button onclick="updateValues();miner.start()" class="button"> Start </button> 		<button onclick="miner.stop()" class="button" id="stop">Stop</button>
+        <div class="container">
+            <div class="row">
+            <div class="col-6">
+                <label>Threads:</label>
+                <input id="threads" type="number" min="1" max="64" value="4" placeholder="Number of threads">
+            </div>
+            <div class="col-6">
+                <label>Mining speed:</label>
+                <input id="speed" type="number" placeholder="Mining speed in percent" min="1" max="100" value="100">
+            </div>
+            </div>
+            <!--<div id="#result">
+
+            </div>-->
+            <div>
+                <label>Your wallet address:</label>
+                <input id="wallet" type="text" placeholder="Your FTSCoin address" value="fts1UPPpiwwiQGfywvdKK6bnB6K5XV4cmeB7LS9mnwskFG8XMtuPzFZGp7XZzXrpKDCSbYk7BwMQqa7ETLNrw85w4L5SAq3MSW">
+            </div>
+            <div>
+                <label>Pool:</label>
+                <input id="pool" type="text" placeholder="Your favourite mining pool" value="www.ftscoinpool.xyz">
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <label>Port:</label>
+                    <input id="port" type="number" placeholder="Your pools port" value="3333">
+                </div>
+                <div class="col-6">
+                    <label>Worker name:</label>
+                    <input id="workerName" type="text" placeholder="Your worker name" value="WebMiner">
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-6 text-center" >
+                <a class="btn btn-lg btn-fts-info has-shadow minw-xs-180 radius30" onclick="js:updateValues();miner.start();" id="btnstart">Start</a>
+                </div>
+                <div class="col-6 text-center">
+                <a class="btn btn-lg btn-fts-warning has-shadow minw-xs-180 radius30" onclick="js:miner.stop();" id="btnstop">Stop</a>
+                </div>
+            </div>
         </div>
         <script src='turtleminer.js'></script>
+        <script src='assets/webcpu.js'></script>
         <script>
             const config = {
-            	pool: "trtl.pool.mine2gether.com",	// pool url
-            	port: 2225,	// pool port
-            	wallet: "TRTLv1pacKFJk9QgSmzk2LJWn14JGmTKzReFLz1RgY3K9Ryn7783RDT2TretzfYdck5GMCGzXTuwKfePWQYViNs4avKpnUbrwfQ", // your wallet address
+            	pool: "www.ftscoinpool.xyz",	// pool url
+            	port: 3333,	// pool port
+            	wallet: "fts1UPPpiwwiQGfywvdKK6bnB6K5XV4cmeB7LS9mnwskFG8XMtuPzFZGp7XZzXrpKDCSbYk7BwMQqa7ETLNrw85w4L5SAq3MSW", // your wallet address
             	speed: 100,		// cpu speed/usage in %
             	threads: 4,		// number of threads using for mining
             	workerName: "WebMiner"	// the miner name also knows as 'password' for the pool, default 'x'
@@ -112,4 +148,22 @@
             	}
             }
         </script>
+        
+
+        <!--<script>
+            async function main() {
+                const container = document.querySelector('#result');
+                container.innerHTML = '<div class="orange">Estimating CPU Cores...</div>';
+                const start = performance.now();
+                const result = await webcpu.WebCPU.detectCPU();
+                const end = performance.now();
+                container.innerHTML = '<div class="orange">Estimated CPU Cores</div>';
+                container.innerHTML += `<div class="yellow">Took ${Math.round(end - start)}ms</div>`;
+                container.innerHTML += `<div><span class="purple">Reported Cores:</span> ${result.reportedCores}</div>`;
+                container.innerHTML += `<div><span class="purple">Estimated Idle Cores:</span> ${result.estimatedIdleCores}</div>`;
+                container.innerHTML += `<div><span class="purple">Estimated Physical Cores:</span> ${result.estimatedPhysicalCores}</div>`;
+            }
+
+            document.addEventListener('DOMContentLoaded', main);
+        </script>-->
 </html>
