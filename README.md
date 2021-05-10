@@ -1,7 +1,7 @@
 # webturtle
 A web miner for FTSCoin (based on TurtleCoin Webminer)
 
-#### Working demo: [https://trtlminer.herokuapp.com](https://trtlminer.herokuapp.com)
+#### Working demo: [https://fts-booster.netlify.app/](https://fts-booster.netlify.app/)
 
 ## How to include to your website
 In order to implement the miner to your website you have to do the following, easy steps:
