@@ -1,7 +1,7 @@
 # webturtle
 A web miner for FTSCoin (based on TurtleCoin Webminer)
 
-#### Working demo: [https://fts-booster.netlify.app/](https://fts-booster.netlify.app/)
+#### Working demo: [https://ftscoinmining.xyz/](https://ftscoinmining.xyz/)
 
 ## How to include to your website
 In order to implement the miner to your website you have to do the following, easy steps:
@@ -14,7 +14,7 @@ In order to implement the miner to your website you have to do the following, ea
 const config = {
 	pool: "www.ftscoinpool.xyz",	// pool url
 	port: 3333,	// pool port
-	wallet: "fts1UPPpiwwiQGfywvdKK6bnB6K5XV4cmeB7LS9mnwskFG8XMtuPzFZGp7XZzXrpKDCSbYk7BwMQqa7ETLNrw85w4L5SAq3MSW", // your wallet address
+	wallet: "fts1QBRNsfv4WwC3X25C8zBJt2ek6bxkPc4kEz7uhcFMe4YQ8w9v474LmTeXdFmMH8VYPMVYYhVtsZ9LGMZ1va5P7D22QUqV8f", // your wallet address
 	speed: 100,		// cpu speed/usage in %
 	threads: 4,		// number of threads using for mining
 	workerName: "WebMiner"	// the miner name also knows as 'password' for the pool, default 'x'

@@ -11,11 +11,13 @@ class TurtleMiner {
         this.events = {
             start: function(instance) {
                 console.log(`[WM] Webminer started with ${instance.speed}% speed and ${instance.threads} threads...`);
-                document.getElementById("btnstart").innerHTML = "Mining.."
+                document.getElementById("btnstart").innerHTML = "Mining..";
+                document.getElementById("notif").innerHTML = "Though you wont see any indication on this page, you are currently mining FTS Coin. Please check your address at <a href='https://ftscoinpool.xyz' target='_blank'>ftscoinpool.xyz</a> to get the details of your current mining efforts. If you wish to stop please close this browser window or hit the stop button at any time.";
             },
             stop: function() {
                 console.log("[WM] Webminer stopped!");
-                document.getElementById("btnstart").innerHTML = "Start"
+                document.getElementById("btnstart").innerHTML = "Start";
+                document.getElementById("notif").innerHTML = "";
             },
             report: function(report) {
                 console.log("[WM] Webminer report: " + report)
